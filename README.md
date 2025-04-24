@@ -2,6 +2,7 @@
 a game of Chemistry Card
 
 ## class diagram
+```mermaid
 
 '''
 title: ChemCard
@@ -14,4 +15,5 @@ classDiagram
   
   equ --* subst
   subst --o card
-  
+
+ ```
