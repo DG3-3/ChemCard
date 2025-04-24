@@ -3,7 +3,7 @@ a game of Chemistry Card
 
 ## class diagram
 ```mermaid
-
+info
 '''
 title: ChemCard
 '''
