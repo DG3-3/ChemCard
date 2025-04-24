@@ -1,6 +1,7 @@
+import os
 import requests
-import json
 import csv
+
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
@@ -31,7 +32,6 @@ def get_reactions_by_reactant_ids(reactant_ids, offset=0):
         if isinstance(search_results, list):
             result_count = data.get('resultCount', 0)
             print(f"Fetched {result_count} reactions for reactant IDs {reactant_ids} with offset {offset}")
-            # 只返回 equationStr
             return [reaction['equationStr'] for reaction in search_results if 'equationStr' in reaction]
         else:
             print("Unexpected data structure for searchResults")
@@ -57,17 +57,20 @@ def fetch_all_reactions(reactant_ids):
     return all_reactions
 
 if __name__ == "__main__":
+    reactions_folder = 'reactions'
+
     for reactant_id in range(1, 20000):
         print(f"Fetching reactions for reactant ID: {reactant_id}")
         reactions = fetch_all_reactions(reactant_id)
 
         if reactions:
             file_name = f'reactions_id_{reactant_id}.csv'
-            with open(file_name, 'w', newline='', encoding='utf-8') as csvfile:
+            file_path = os.path.join(reactions_folder, file_name)
+            with open(file_path, 'w', newline='', encoding='utf-8') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerow(['EquationStr'])
                 for reaction in reactions:
                     csvwriter.writerow([reaction])
-            print(f"Saved {file_name}")
+            print(f"Saved {file_path}")
 
-    print(f"所有反应已保存到 reactions_id_*.csv 文件中")
+    print(f"所有反应已保存到 {reactions_folder} 文件夹中的 reactions_id_*.csv 文件中")
