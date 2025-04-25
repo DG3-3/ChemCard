@@ -46,17 +46,11 @@ class numcard{
 }
 
 class player{
-    -elecard e1
-    -elecard e2
-    -elecard e3
-    -elecard e4
-    -elecard e5
-    -numcard n1
-    -numcard n2
-    -numcard n3
-    -symcard s1
-    -symcard s2
+    -elecards e
+    -numcards n
+    -symcards s
     
+    +discard(card c)
     +playc(card c)
     +takec(card handc, card takenc)
     +borrow(market m, card c)
@@ -70,12 +64,7 @@ class deck{
 }
 
 class market{
-    -card c1
-    -card c2
-    -card c3
-    -card c4
-    -card c5
-    -card c6
+    -card[] c
     
     +return(card c)
     +lend(card c)
@@ -106,4 +95,8 @@ class equ{
   -subst[] s
   
 }
+
+deck -- player : takecard
+deck --o card
+
 ```
