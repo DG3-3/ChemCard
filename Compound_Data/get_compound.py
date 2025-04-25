@@ -59,7 +59,7 @@ def fetch_all_reactions(reactant_ids):
 if __name__ == "__main__":
     reactions_folder = 'reactions'
 
-    for reactant_id in range(1, 5001):
+    for reactant_id in range(1, 20001):
         print(f"Fetching reactions for reactant ID: {reactant_id}")
         reactions = fetch_all_reactions(reactant_id)
 
