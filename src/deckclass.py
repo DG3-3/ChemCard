@@ -12,6 +12,9 @@ class deck:
         type = 3: pink cards
         """
     
+    def getcards(self):
+        return self.__deck
+    
     def shuffle(self):
         random.shuffle(self.__deck)
     
